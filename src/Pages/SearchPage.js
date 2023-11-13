@@ -1,0 +1,79 @@
+import React, { useEffect, useState } from "react";
+import Navbar from "../Components/Navbar";
+import Card from "../Components/Card";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useAtom } from "jotai";
+import { dataAtom } from "../Variable";
+
+import "swiper/css";
+
+const SearchPage = () => {
+    const [data, setData] = useAtom(dataAtom);
+    const [swiper, setSwiper] = useState(null);
+    const [active, setActive] = useState(0);
+    const [search, setSearch] = useState("");
+    useEffect(() => {
+        fetch("/data")
+            .then((response) => response.json())
+            .then((result) => {
+                setData(result);
+            })
+            .catch((error) => console.error("Error:", error));
+    }, []);
+    return (
+        <div className="bg-slate-200 min-h-screen noScrollBar">
+            <div
+                id="previewContainer"
+                onClick={() => {
+                    document.getElementById("previewContainer").classList.add("hidden");
+                }}
+                className="bg-black/90 backdrop-blur-lg absolute top-0 left-0 w-full h-full z-[60] hidden"
+            >
+                <img id="previewImg" className="object-contain w-full h-full p-10" src="/static/images/SHA_logo.png"></img>
+            </div>
+            <Navbar swiper={swiper} setActive={setActive} active={active} />
+            <div className="p-4 pt-32">
+                <input
+                    value={search}
+                    onChange={(event) => {
+                        setSearch(event.target.value);
+                    }}
+                    type="text"
+                    className="w-full p-2 px-4 mb-5 rounded-full shadow-inner focus:ring-orange-500 focus:outline-none ring-2 ring-transparent"
+                    placeholder="Search"
+                />
+                <Swiper onSwiper={setSwiper} slidesPerView={1} onSlideChange={() => setActive(swiper.realIndex)}>
+                    <SwiperSlide>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5">
+                            {data.map((item, index) => {
+                                if (item[6] === "A" && item[1].toLowerCase().includes(search.toLowerCase())) {
+                                    return <Card key={index} name={item[1]} father={item[2]} address={item[3]} phone={item[4]} pradesh={item[5]} photo={item[7]} activeP={true} />;
+                                }
+                            })}
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-6 gap-5">
+                            {data.map((item, index) => {
+                                if (item[6] === "NA" && item[1].toLowerCase().includes(search.toLowerCase())) {
+                                    return <Card key={index} name={item[1]} father={item[2]} address={item[3]} phone={item[4]} pradesh={item[5]} photo={item[7]} activeP={true} />;
+                                }
+                            })}
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5">
+                            {data.map((item, index) => {
+                                if (item[6] === "Y" && item[1].toLowerCase().includes(search.toLowerCase())) {
+                                    return <Card key={index} name={item[1]} father={item[2]} address={item[3]} phone={item[4]} pradesh={item[5]} photo={item[7]} activeP={true} />;
+                                }
+                            })}
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
+            </div>
+        </div>
+    );
+};
+
+export default SearchPage;
