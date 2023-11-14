@@ -88,7 +88,7 @@ const CameraPage = () => {
                         document.getElementById("capturedImageContainer").classList.remove("scale-0");
                         let formData = new FormData();
                         formData.append("imageSrc", imageSrcRaw);
-                        fetch("/ai", {
+                        fetch("https://thejagstudio-bhaktamala.hf.space/ai", {
                             method: "POST",
                             body: formData,
                         })

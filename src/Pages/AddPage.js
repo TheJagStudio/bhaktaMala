@@ -45,7 +45,7 @@ const Form = ({ active }) => {
                     formData.append("address", address.value);
                     formData.append("category", category.value);
 
-                    fetch("/addData", {
+                    fetch("https://thejagstudio-bhaktamala.hf.space/addData", {
                         method: "POST",
                         body: formData,
                     })

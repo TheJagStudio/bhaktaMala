@@ -2,7 +2,6 @@
   "name": "bhaktamala",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://thejagstudio-bhaktaMala.hf.space",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

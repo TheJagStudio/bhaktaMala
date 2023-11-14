@@ -13,7 +13,7 @@ const SearchPage = () => {
     const [active, setActive] = useState(0);
     const [search, setSearch] = useState("");
     useEffect(() => {
-        fetch("/data")
+        fetch("dhttps://thejagstudio-bhaktamala.hf.space/data")
             .then((response) => response.json())
             .then((result) => {
                 setData(result);

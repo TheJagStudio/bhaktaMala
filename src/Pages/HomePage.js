@@ -13,7 +13,7 @@ const HomePage = () => {
     const [swiper, setSwiper] = useState(null);
     const [active, setActive] = useState(0);
     useEffect(() => {
-        fetch("/data")
+        fetch("https://thejagstudio-bhaktamala.hf.space/data")
             .then((response) => response.json())
             .then((result) => {
                 setData(result);
