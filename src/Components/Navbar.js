@@ -7,7 +7,7 @@ const Navbar = ({ swiper, active, setActive }) => {
         <div className="shadow-lg z-50 fixed w-full">
             <div className="bg-orange-400 text-white p-4 text-lg flex justify-between items-center ">
                 <NavLink to={"/"} className="font-bold text-xl">
-                    BhaktaMala
+                    Bhaktamala
                 </NavLink>
                 <div className="flex gap-3">
                     <NavLink to={"/search"} className="bg-white text-orange-500 hover:text-white shadow-inner hover:shadow-lg shadow-black/30 hover:shdow-white/30 hover:bg-blue-500 rounded-md p-1.5">
