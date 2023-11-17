@@ -26,11 +26,10 @@ const Card = ({ key, name, father, address, phone, pradesh, photo, activeP }) =>
                             shareData({
                                 title: "Bhaktamala",
                                 text: "Name : " + name + "\nFather : " + father + "\nPhone : " + phone + "\nAddress : " + address + "\nPradesh : " + pradesh,
-                                url: "https://bhakta-mala.vercel.app/",
                             });
                             event.stopPropagation();
                         }}
-                        className="absolute flex items-center justify-center top-3 right-3 w-10 h-10 rounded-full bg-green-500"
+                        className={"absolute flex items-center justify-center bottom-3 left-3 z-30 w-10 h-10 rounded-full bg-green-500 " + (active ? "" : "hidden")}
                     >
                         <svg width={24} height={24} viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.293 2.293a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1-1.414 1.414L13 5.414V15a1 1 0 1 1-2 0V5.414L9.707 6.707a1 1 0 0 1-1.414-1.414l3-3zM4 11a2 2 0 0 1 2-2h2a1 1 0 0 1 0 2H6v9h12v-9h-2a1 1 0 1 1 0-2h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" fill="white" />
@@ -49,16 +48,19 @@ const Card = ({ key, name, father, address, phone, pradesh, photo, activeP }) =>
                                     document.getElementById("previewContainer").classList.remove("hidden");
                                     document.getElementById("previewImg").src = photo;
                                 }
-                                event.stopPropagation();
+                                if (active) {
+                                    event.stopPropagation();
+                                }
                             }}
                             className={"mb-16 drop-shadow-lg object-cover rounded-lg " + (active ? "h-32 w-32" : "h-full w-full")}
                             src={photo}
                         ></img>
-                        <div className="transition-all text-left">
-                            <p className={"text-orange-500 font-bold truncate " + (active ? "text-2xl" : "text-sm absolute bottom-0 left-1/2 w-full -translate-x-1/2 bg-white/90 backdrop-blur-md  px-2")}>{name}</p>
+                        <div className={"transition-all text-left h-fit mb-12 " + (active ? "w-full" : "")}>
+                            <p className={"text-orange-500 font-bold " + (active ? "text-2xl" : "text-sm absolute bottom-0 left-1/2 w-full -translate-x-1/2 bg-white/90 backdrop-blur-md  px-2")}>
+                                {name} {father}
+                            </p>
 
                             <div className={active ? "" : "hidden"}>
-                                <p className="text-blue-950 font-bold">{father}</p>
                                 <p className="text-blue-950 font-bold">{phone}</p>
                                 <p className="text-blue-950 ">{address}</p>
                             </div>

@@ -46,7 +46,8 @@ const SearchPage = () => {
                     <SwiperSlide>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5">
                             {data.map((item, index) => {
-                                if (item[6] === "A" && item[1].toLowerCase().includes(search.toLowerCase())) {
+                                let query = item[1] + " " + item[2] + " " + item[3] + " " + item[4];
+                                if (item[6] === "A" && query.toLowerCase().includes(search.toLowerCase())) {
                                     return <Card key={index} name={item[1]} father={item[2]} address={item[3]} phone={item[4]} pradesh={item[5]} photo={item[7]} activeP={true} />;
                                 }
                             })}
@@ -55,7 +56,8 @@ const SearchPage = () => {
                     <SwiperSlide>
                         <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-6 gap-5">
                             {data.map((item, index) => {
-                                if (item[6] === "NA" && item[1].toLowerCase().includes(search.toLowerCase())) {
+                                let query = item[1] + " " + item[2] + " " + item[3] + " " + item[4];
+                                if (item[6] === "NA" && query.toLowerCase().includes(search.toLowerCase())) {
                                     return <Card key={index} name={item[1]} father={item[2]} address={item[3]} phone={item[4]} pradesh={item[5]} photo={item[7]} activeP={true} />;
                                 }
                             })}
@@ -64,7 +66,8 @@ const SearchPage = () => {
                     <SwiperSlide>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5">
                             {data.map((item, index) => {
-                                if (item[6] === "Y" && item[1].toLowerCase().includes(search.toLowerCase())) {
+                                let query = item[1] + " " + item[2] + " " + item[3] + " " + item[4];
+                                if (item[6] === "Y" && query.toLowerCase().includes(search.toLowerCase())) {
                                     return <Card key={index} name={item[1]} father={item[2]} address={item[3]} phone={item[4]} pradesh={item[5]} photo={item[7]} activeP={true} />;
                                 }
                             })}
