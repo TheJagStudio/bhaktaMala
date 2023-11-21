@@ -57,7 +57,7 @@ const Card = ({ key, name, father, address, phone, pradesh, photo, activeP }) =>
                         ></img>
                         <div className={"transition-all text-left h-fit mb-12 " + (active ? "w-full" : "")}>
                             <p className={"text-orange-500 font-bold " + (active ? "text-2xl" : "text-sm absolute bottom-0 left-1/2 w-full -translate-x-1/2 bg-white/90 backdrop-blur-md  px-2")}>
-                                {name} {father}
+                                {name} <span className={active ? "" : "hidden"}>{father}</span>
                             </p>
 
                             <div className={active ? "" : "hidden"}>

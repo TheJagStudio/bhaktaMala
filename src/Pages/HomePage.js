@@ -16,6 +16,16 @@ const HomePage = () => {
         fetch("https://thejagstudio-bhaktamala.hf.space/data")
             .then((response) => response.json())
             .then((result) => {
+                // sort result by result[1]
+                result = result.sort(sortFunction);
+
+                function sortFunction(a, b) {
+                    if (a[1] === b[1]) {
+                        return 0;
+                    } else {
+                        return a[1] < b[1] ? -1 : 1;
+                    }
+                }
                 setData(result);
                 setLoading(false);
             })
