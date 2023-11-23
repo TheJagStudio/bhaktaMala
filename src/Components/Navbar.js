@@ -39,7 +39,7 @@ const Navbar = ({ swiper, active, setActive, ambrishCount, nonAmbrishCount, yuva
                     className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 0 ? "bg-blue-500 text-white" : "bg-white")}
                 >
                     Amrish
-                    {ambrishCount > 0 && <span className="ml-2">({ambrishCount})</span>}
+                    {ambrishCount > 0 && <span className="ml-2 hidden sm:block">({ambrishCount})</span>}
                 </p>
                 <p
                     onClick={() => {
@@ -49,7 +49,7 @@ const Navbar = ({ swiper, active, setActive, ambrishCount, nonAmbrishCount, yuva
                     className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 1 ? "bg-blue-500 text-white" : "bg-white")}
                 >
                     Non Amrish
-                    {nonAmbrishCount > 0 && <span className="ml-2">({nonAmbrishCount})</span>}
+                    {nonAmbrishCount > 0 && <span className="ml-2 hidden sm:block">({nonAmbrishCount})</span>}
                 </p>
                 <p
                     onClick={() => {
@@ -59,7 +59,7 @@ const Navbar = ({ swiper, active, setActive, ambrishCount, nonAmbrishCount, yuva
                     className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 2 ? "bg-blue-500 text-white" : "bg-white")}
                 >
                     Yuvak
-                    {yuvakCount > 0 && <span className="ml-2">({yuvakCount})</span>}
+                    {yuvakCount > 0 && <span className="ml-2 hidden sm:block">({yuvakCount})</span>}
                 </p>
             </div>
         </div>
