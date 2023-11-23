@@ -12,6 +12,9 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [swiper, setSwiper] = useState(null);
     const [active, setActive] = useState(0);
+    const [ambrishCount, setAmbrishCount] = useState(0);
+    const [nonAmbrishCount, setNonAmbrishCount] = useState(0);
+    const [yuvakCount, setYuvakCount] = useState(0);
     useEffect(() => {
         fetch("https://thejagstudio-bhaktamala.hf.space/data")
             .then((response) => response.json())
@@ -26,6 +29,23 @@ const HomePage = () => {
                         return a[1] < b[1] ? -1 : 1;
                     }
                 }
+                let ambrish = 0;
+                let nonAmbrish = 0;
+                let yuvak = 0;
+                result.forEach((item) => {
+                    if (item[6] === "A") {
+                        ambrish++;
+                    }
+                    if (item[6] === "NA") {
+                        nonAmbrish++;
+                    }
+                    if (item[6] === "Y") {
+                        yuvak++;
+                    }
+                });
+                setAmbrishCount(ambrish);
+                setNonAmbrishCount(nonAmbrish);
+                setYuvakCount(yuvak);
                 setData(result);
                 setLoading(false);
             })
@@ -56,7 +76,7 @@ const HomePage = () => {
                     </svg>
                 </div>
             )}
-            <Navbar swiper={swiper} setActive={setActive} active={active} />
+            <Navbar swiper={swiper} setActive={setActive} active={active} ambrishCount={ambrishCount} nonAmbrishCount={nonAmbrishCount} yuvakCount={yuvakCount} />
             <Swiper className="overflow-visible drop-shadow-xl" onSwiper={setSwiper} slidesPerView={1} onSlideChange={() => setActive(swiper.realIndex)}>
                 <SwiperSlide>
                     <div className="p-4 pt-32  grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-5 items-center justify-center transition-all ">

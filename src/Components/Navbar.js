@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import InstallButton from "./InstallButton";
 
-const Navbar = ({ swiper, active, setActive }) => {
+const Navbar = ({ swiper, active, setActive, ambrishCount, nonAmbrishCount, yuvakCount }) => {
     return (
         <div className="shadow-lg z-50 fixed w-full">
             <div className="bg-orange-400 text-white p-4 text-lg flex justify-between items-center ">
@@ -39,6 +39,7 @@ const Navbar = ({ swiper, active, setActive }) => {
                     className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 0 ? "bg-blue-500 text-white" : "bg-white")}
                 >
                     Amrish
+                    {ambrishCount > 0 && <span className="ml-2">({ambrishCount})</span>}
                 </p>
                 <p
                     onClick={() => {
@@ -48,6 +49,7 @@ const Navbar = ({ swiper, active, setActive }) => {
                     className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 1 ? "bg-blue-500 text-white" : "bg-white")}
                 >
                     Non Amrish
+                    {nonAmbrishCount > 0 && <span className="ml-2">({nonAmbrishCount})</span>}
                 </p>
                 <p
                     onClick={() => {
@@ -56,7 +58,8 @@ const Navbar = ({ swiper, active, setActive }) => {
                     }}
                     className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 2 ? "bg-blue-500 text-white" : "bg-white")}
                 >
-                    Youvak
+                    Yuvak
+                    {yuvakCount > 0 && <span className="ml-2">({yuvakCount})</span>}
                 </p>
             </div>
         </div>
