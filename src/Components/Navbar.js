@@ -36,7 +36,7 @@ const Navbar = ({ swiper, active, setActive, ambrishCount, nonAmbrishCount, yuva
                         swiper.slideTo(0);
                         setActive(0);
                     }}
-                    className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 0 ? "bg-blue-500 text-white" : "bg-white")}
+                    className={"flex flex-nowrap hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 0 ? "bg-blue-500 text-white" : "bg-white")}
                 >
                     Amrish
                     {ambrishCount > 0 && <span className="ml-2 hidden sm:block">({ambrishCount})</span>}
@@ -46,7 +46,7 @@ const Navbar = ({ swiper, active, setActive, ambrishCount, nonAmbrishCount, yuva
                         swiper.slideTo(1);
                         setActive(1);
                     }}
-                    className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 1 ? "bg-blue-500 text-white" : "bg-white")}
+                    className={"flex flex-nowrap hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 1 ? "bg-blue-500 text-white" : "bg-white")}
                 >
                     Non Amrish
                     {nonAmbrishCount > 0 && <span className="ml-2 hidden sm:block">({nonAmbrishCount})</span>}
@@ -56,7 +56,7 @@ const Navbar = ({ swiper, active, setActive, ambrishCount, nonAmbrishCount, yuva
                         swiper.slideTo(2);
                         setActive(2);
                     }}
-                    className={" hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 2 ? "bg-blue-500 text-white" : "bg-white")}
+                    className={"flex flex-nowrap hover:bg-blue-500 hover:text-white cursor-pointer shadow-black/25 shadow-inner rounded-full px-3 " + (active === 2 ? "bg-blue-500 text-white" : "bg-white")}
                 >
                     Yuvak
                     {yuvakCount > 0 && <span className="ml-2 hidden sm:block">({yuvakCount})</span>}
