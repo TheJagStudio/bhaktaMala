@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const Card = ({ key, name, father, address, phone, pradesh, photo, activeP }) => {
+const Card = ({ name, father, address, phone, pradesh, photo, activeP }) => {
     const [active, setActive] = useState(activeP);
     async function shareData(data) {
         try {
@@ -16,7 +16,6 @@ const Card = ({ key, name, father, address, phone, pradesh, photo, activeP }) =>
             onClick={() => {
                 setActive(!active);
             }}
-            key={key}
             className={"transition-all cursor-pointer w-full h-full  " + (active ? "col-span-3 sm:col-span-2 sm:row-span-2" : "")}
         >
             <div className={"relative  flex flex-col  gap-5 group transition-all " + (active ? "w-full h-auto" : "w-full sm:w-32 h-32 sm:h-32 mx-auto")}>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { openDB } from "idb";
 import Navbar from "../Components/Navbar";
 import Card from "../Components/Card";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,6 +7,9 @@ import { useAtom } from "jotai";
 import { dataAtom } from "../Variable";
 
 import "swiper/css";
+
+const dbName = "bhatkamala";
+const storeName = "main";
 
 const HomePage = () => {
     const [data, setData] = useAtom(dataAtom);
@@ -16,40 +20,85 @@ const HomePage = () => {
     const [nonAmbrishCount, setNonAmbrishCount] = useState(0);
     const [yuvakCount, setYuvakCount] = useState(0);
     useEffect(() => {
-        fetch("https://thejagstudio-bhaktamala.hf.space/data")
-            .then((response) => response.json())
-            .then((result) => {
-                // sort result by result[1]
-                result = result.sort(sortFunction);
-
-                function sortFunction(a, b) {
-                    if (a[1] === b[1]) {
-                        return 0;
+        try {
+            openDB(dbName, 1, {
+                upgrade(db) {
+                    if (!db.objectStoreNames.contains(storeName)) {
+                        db.createObjectStore(storeName, { keyPath: "data" });
+                    }
+                },
+            }).then((db) => {
+                // Try to get data from IndexedDB
+                db.getAll(storeName).then((dataFromDB) => {
+                    if (dataFromDB.length > 0 && !navigator.onLine) {
+                        console.log("Data from IndexedDB");
+                        let ambrish = 0;
+                        let nonAmbrish = 0;
+                        let yuvak = 0;
+                        let results = [];
+                        dataFromDB.forEach((item) => {
+                            results.push(item.data);
+                        });
+                        results.forEach((item) => {
+                            if (item[6] === "A") {
+                                ambrish++;
+                            }
+                            if (item[6] === "NA") {
+                                nonAmbrish++;
+                            }
+                            if (item[6] === "Y") {
+                                yuvak++;
+                            }
+                        });
+                        setAmbrishCount(ambrish);
+                        setNonAmbrishCount(nonAmbrish);
+                        setYuvakCount(yuvak);
+                        setData(results);
+                        setLoading(false);
                     } else {
-                        return a[1] < b[1] ? -1 : 1;
-                    }
-                }
-                let ambrish = 0;
-                let nonAmbrish = 0;
-                let yuvak = 0;
-                result.forEach((item) => {
-                    if (item[6] === "A") {
-                        ambrish++;
-                    }
-                    if (item[6] === "NA") {
-                        nonAmbrish++;
-                    }
-                    if (item[6] === "Y") {
-                        yuvak++;
+                        fetch("https://thejagstudio-bhaktamala.hf.space/data")
+                            .then((response) => response.json())
+                            .then((result) => {
+                                // sort result by result[1]
+                                result = result.sort(sortFunction);
+
+                                function sortFunction(a, b) {
+                                    if (a[1] === b[1]) {
+                                        return 0;
+                                    } else {
+                                        return a[1] < b[1] ? -1 : 1;
+                                    }
+                                }
+                                let ambrish = 0;
+                                let nonAmbrish = 0;
+                                let yuvak = 0;
+                                result.forEach((item) => {
+                                    if (item[6] === "A") {
+                                        ambrish++;
+                                    }
+                                    if (item[6] === "NA") {
+                                        nonAmbrish++;
+                                    }
+                                    if (item[6] === "Y") {
+                                        yuvak++;
+                                    }
+                                });
+                                setAmbrishCount(ambrish);
+                                setNonAmbrishCount(nonAmbrish);
+                                setYuvakCount(yuvak);
+                                setData(result);
+                                setLoading(false);
+                                result.forEach((item) => {
+                                    db.put(storeName, { data: item });
+                                });
+                            })
+                            .catch((error) => console.error("Error:", error));
                     }
                 });
-                setAmbrishCount(ambrish);
-                setNonAmbrishCount(nonAmbrish);
-                setYuvakCount(yuvak);
-                setData(result);
-                setLoading(false);
-            })
-            .catch((error) => console.error("Error:", error));
+            });
+        } catch (error) {
+            console.error("Error:", error);
+        }
     }, []);
     return (
         <div className="bg-slate-200 min-h-screen noScrollBar">
