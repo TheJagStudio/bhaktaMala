@@ -109,7 +109,7 @@ const HomePage = () => {
                 }}
                 className="bg-black/90 backdrop-blur-lg absolute top-0 left-0 w-full h-full z-[60] hidden"
             >
-                <img id="previewImg" className="object-contain w-full h-full p-10" src="/static/images/SHA_logo.png"></img>
+                <img id="previewImg" alt="previewImg" className="object-contain w-full h-full p-10" src="/static/images/SHA_logo.png"></img>
             </div>
             {loading && (
                 <div className="bg-white w-full h-full flex items-center justify-center fixed top-0 left-0 z-40">

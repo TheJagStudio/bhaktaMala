@@ -38,7 +38,7 @@ const SearchPage = () => {
                 }}
                 className="bg-black/90 backdrop-blur-lg absolute top-0 left-0 w-full h-full z-[60] hidden"
             >
-                <img id="previewImg" className="object-contain w-full h-full p-10" src="/static/images/SHA_logo.png"></img>
+                <img id="previewImg" alt="previewImg" className="object-contain w-full h-full p-10" src="/static/images/SHA_logo.png"></img>
             </div>
             <Navbar swiper={swiper} setActive={setActive} active={active} />
             <div className="p-4 pt-32">

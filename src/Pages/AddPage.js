@@ -103,7 +103,7 @@ const Form = ({ active, index }) => {
                 <p id={"labelImage" + index} className="text-orange-500 font-bold ">
                     Upload Image
                 </p>
-                <img id={"profileImage" + index} className="hidden h-full w-full object-cover shadow-inner shadow-black/25" />
+                <img id={"profileImage" + index} alt={"profileImage"} className="hidden h-full w-full object-cover shadow-inner shadow-black/25" />
             </div>
             <div>
                 <p className="text-orange-500 font-semibold text-xl px-4 mb-2">Name</p>
