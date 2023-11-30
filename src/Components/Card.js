@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toPng } from "html-to-image";
+
 const Card = ({ name, father, address, phone, pradesh, photo, activeP }) => {
     const [active, setActive] = useState(activeP);
     async function shareData(data) {
@@ -22,10 +24,21 @@ const Card = ({ name, father, address, phone, pradesh, photo, activeP }) => {
                 <div className={"overflow-hidden bg-white relative w-full h-full rounded-xl flex items-center justify-center transition-all  " + (active ? "p-4" : "p-0")}>
                     <button
                         onClick={(event) => {
-                            shareData({
-                                title: "Bhaktamala",
-                                text: "Name : " + name + "\nFather : " + father + "\nPhone : " + phone + "\nAddress : " + address + "\nPradesh : " + pradesh,
-                            });
+                            let card = event.target.parentElement.parentElement.parentElement;
+
+                            toPng(card, { cacheBust: false })
+                                .then((dataUrl) => {
+                                    let files = [new File([dataUrl], "bhaktamala.png", { type: "image/png" })];
+                                    shareData({
+                                        title: "Bhaktamala",
+                                        text: "Name : " + name + "\nFather : " + father + "\nPhone : " + phone + "\nAddress : " + address + "\nPradesh : " + pradesh,
+                                        files: files,
+                                    });
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+
                             event.stopPropagation();
                         }}
                         className={"absolute flex items-center justify-center bottom-3 left-3 z-30 w-10 h-10 rounded-full bg-green-500 " + (active ? "" : "hidden")}
